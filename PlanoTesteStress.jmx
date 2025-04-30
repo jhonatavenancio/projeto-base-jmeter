@@ -1,0 +1,1621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plano de Teste Omnia">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Tela de negocios">
+        <intProp name="ThreadGroup.num_threads">200</intProp>
+        <intProp name="ThreadGroup.ramp_time">0</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador de Iteração">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição - LOGIN" enabled="false">
+          <stringProp name="HTTPSampler.domain">homologacao-virtual.vsomnia.com.br</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">web/UsuarioManager/login</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;email&quot;:&quot;jhonata.zeferino&quot;,&quot;password&quot;:&quot;feb7abaa0a7280f8e355ec1125e6460ba2850842ca01b787be3e87717d00db2604ce358eb6030bae3635550fac36bcec362f7c56831c3978ed3f4077547be52e&quot;,&quot;cpf&quot;:&quot;&quot;,&quot;senhaLdapEnum&quot;:&quot;U2FsdGVkX1/Wapdqr6eFIQ18EK3CkBNhmYPBv0w6E+g=&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="false">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZm90byI6Imh0dHBzOi8vcmVqdXZlbmVzY2UudnNnZXN0YW9jbGluaWNhLmNvbS5ici9vd25jbG91ZC9pbmRleC5waHAvcy9DeVk2dWpQaHBXdW92b1MvZG93bmxvYWQiLCJzdWIiOiJhZG1pbi52cyIsIm5vbWUiOiJWaXJ0dWFsIFNpc3RlbWFzIiwiYXRpdm8iOnRydWUsImF1dGhvcml0aWVzIjpbIklNQUdFTlNfRklDSEFfUEFDSUVOVEUiLCJST0xFX0ZJTkFOQ0VJUk8iLCJDUklBUl9ERVNQRVNBIiwiUk9MRV9BR0VOREFNRU5UT1MiLCJFRElUQVJfRVNUT1FVRSIsIkVYQU1FX0ZJQ0hBX1BBQ0lFTlRFIiwiRURJVEFSX1JFQ0VJVEEiLCJDUklBUl9DQU1QQU5IQSIsIkNSSUFSX05PVk9fUEFDSUVOVEUiLCJERUJJVE9fRklDSEFfUEFDSUVOVEUiLCJQUkVOQ0hFRVJfRk9STVVMQVJJT19ERV9DT05UQVRPIiwiUk9MRV9MT0ciLCJWSVNVQUxJWkFSX0FHRU5EQU1FTlRPU19QUk9GSVNTSU9OQUlTIiwiUk9MRV9EQVNIQk9BUkQiLCJHRVJFTkNJQVJfVVNVQVJJT1NfRE9fU0lTVEVNQSIsIlBSRVNDUklTT0VTX0ZJQ0hBX1BBQ0lFTlRFIiwiREVMRVRBUl9GT1JNVUxBUklPUyIsIlJPTEVfUEFDSUVOVEVTIiwiQUdFTkRBTUVOVE9TX0ZJQ0hBX1BBQ0lFTlRFIiwiT1JDQU1FTlRPIiwiQ1JJQVJfT1JDQU1FTlRPUyIsIkNBTkNFTEFSX1JFQ0VJVEEiLCJST0xFX1JFTEFUT1JJT1MiLCJST0xFX0NPTkZJR1VSQUNPRVMiLCJGSU5BTkNFSVJPX0ZJQ0hBX1BBQ0lFTlRFIiwiQUNFU1NPX0ZJQ0hBX1BBQ0lFTlRFIiwiRURJVEFSX1ZJU1VBTElaQVJfT1JDQU1FTlRPUyIsIlJPTEVfVVNVQVJJT1MiLCJDQU5DRUxBUl9ERVNQRVNBIiwiSElTVE9SSUNPX0ZJQ0hBX1BBQ0lFTlRFIiwiR0VSRU5DSUFSX0NPTkZJR1VSQUNPRVMiLCJBVEVTVEFET19GSUNIQV9QQUNJRU5URSIsIkVESVRBUl9FX1ZJU1VBTElaQVJfQ0FNUEFOSEFTIiwiRk9STVVMQVJJT19GSUNIQV9QQUNJRU5URSIsIkVESVRBUl9BR0VOREFNRU5UT1MiLCJQUk9QT1NUQV9DT05UUkFUT19GSUNIQV9QQUNJRU5URSIsIlJPTEVfRVNUT1FVRSIsIkNBTkNFTEFSX09SQ0FNRU5UT1MiLCJFRElUQVJfREVTUEVTQSIsIkRFTEVUQVJfQ09OVFJBVE9TIiwiREVMRVRBUl9QUkVTQ1JJQ09FUyIsIkFHRU5EQU1FTlRPU19QQUNJRU5URVMiLCJDUklBUl9SRUNFSVRBIiwiQ1JJQVJfQUdFTkRBTUVOVE9TIiwiQ1JJQVJfRVNUVURPX0NBU08iLCJFWENFQ0FPX0FHRU5EQU1FTlRPIl0sImlhdCI6MTczNjQ0NjMxMSwiZXhwIjoxNzM2NDY3OTExfQ.5xRNY4bCCuDJUoUeeN_qHxtPLxbM3qayNfNET-ldINI</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição getUsuariosDTO" enabled="false">
+          <stringProp name="HTTPSampler.domain">homologacao-virtual.vsomnia.com.br</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/usuario/getUsuarioDTO</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkYTNiYzJmYi05MDc0LTQxYmQtOTNkNC01Y2U3Zjg4MjAzZGIiLCJpYXQiOjE3MzY5NDg5OTMsImV4cCI6MTczNjk5OTM5M30.Lm3aKQy1erjTUiIpWZwmVg0o0EMlmGfd7kBpNsEOLcI</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (config/loja)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/loja/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição etapas" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/etapas</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 5 (Habilitar valores)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/buscarHabilitarValores/5</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição getUsuarioDTO" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/usuario/getUsuarioDTO</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição DTO" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/DTO</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição etapasPorLoja" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/etapasPorLoja</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[2]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição filtro 237" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/obterFiltro/237</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[2]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição pesquisarTags" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/pesquisarTags</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;tag&quot;:&quot;&quot;,&quot;loja&quot;:2}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição camposPersonalizados" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/camposPersonalizados</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;id&quot;:2,&quot;emailPadrao&quot;:&quot;comercial@virtualsistemas.com.br&quot;,&quot;nome&quot;:&quot;Virtual Sistemas&quot;,&quot;endereco&quot;:&quot;Av. Álvares Cabral, 1830 - Lourdes, Belo Horizonte - MG, 30170-001&quot;,&quot;telefone&quot;:&quot;3132456213&quot;,&quot;createdAt&quot;:1575318507530,&quot;updatedAt&quot;:1736434516685,&quot;emailLead&quot;:&quot;&quot;,&quot;emailCco&quot;:&quot;virtualomnia@virtualsistemas.com.br&quot;,&quot;orderLead&quot;:&quot;interacao&quot;,&quot;agendamentoAutomatico&quot;:30,&quot;repeticaoAviso&quot;:1,&quot;permitirFinalizarSemProduto&quot;:true,&quot;negocio&quot;:&quot;OUTROS&quot;,&quot;importaFacebook&quot;:false,&quot;textoAnexoObrigatorio&quot;:&quot;500&quot;,&quot;anexoObrigatorio&quot;:false,&quot;notificaEncerramento&quot;:false,&quot;habilitaPreco&quot;:true,&quot;habilitaClienteLojas&quot;:false,&quot;habilitaEncaminhamento&quot;:false,&quot;habilitaBotoesTelefonia&quot;:false,&quot;apiKey&quot;:null,&quot;sigla&quot;:&quot;VS&quot;,&quot;encaminhamentoEmRetorno&quot;:0,&quot;vendaConcluidaApenasComValor&quot;:false,&quot;tokenIdentificadorExterno&quot;:&quot;tl9wc4K6cRhouwb&quot;,&quot;quantidadeLicenca&quot;:46,&quot;motivoLeadInvalida&quot;:null,&quot;duplicadaId&quot;:null,&quot;produtoIndisponivelId&quot;:null,&quot;matriz&quot;:null,&quot;rede&quot;:[32,33,34,31],&quot;preposicao&quot;:&quot;da&quot;,&quot;baseUrlLead&quot;:null,&quot;email&quot;:{&quot;id&quot;:3,&quot;usuario&quot;:&quot;virtualomnia&quot;,&quot;senha&quot;:&quot;T45Q6jTcM9K7WLlS0iqYAGkEyWcNz/Hp&quot;,&quot;createdAt&quot;:1580083200000,&quot;updatedAt&quot;:1650846783491,&quot;hostName&quot;:&quot;mail2.virtualsistemas.com.br&quot;,&quot;email&quot;:&quot;virtualomnia@virtualsistemas.com.br&quot;,&quot;porta&quot;:995,&quot;protocolo&quot;:&quot;POP_SSL&quot;,&quot;hostNameEnvio&quot;:&quot;mail2.virtualsistemas.com.br&quot;,&quot;portaEnvio&quot;:587,&quot;loginValido&quot;:true,&quot;limparCaixa&quot;:true,&quot;mensagem&quot;:null},&quot;tipoTemporalAgendamento&quot;:&quot;MINUTO&quot;,&quot;tipoTemporalAviso&quot;:&quot;HORA&quot;,&quot;camposObrigatorios&quot;:[],&quot;formatoTelefone&quot;:&quot;9999-9999&quot;,&quot;habilitaFormatacaoTelefone&quot;:false,&quot;enderecoWeb&quot;:&quot;https://virtual.vsomnia.com.br:8443&quot;,&quot;enderecoDominio&quot;:&quot;https://virtual.vsomnia.com.br/&quot;,&quot;integracaoApi&quot;:null,&quot;chaveApi&quot;:null,&quot;cnpj&quot;:null,&quot;tempoInativo&quot;:null,&quot;usuarioAdmin&quot;:null,&quot;leadsRecebidas&quot;:0,&quot;paraFunil&quot;:false,&quot;status&quot;:true,&quot;usuarioInvalidou&quot;:null,&quot;abrirLeadAquario&quot;:false,&quot;idiomaLoja&quot;:&quot;PORTUGUES&quot;,&quot;chaveObrigatoriosEncerrarLead&quot;:&quot;&quot;,&quot;ordenacaoCampoPersonalizadoLead&quot;:&quot;ALFABETICA&quot;,&quot;ordenacaoCampoPersonalizadoCliente&quot;:&quot;ALFABETICA&quot;,&quot;planosGupshup&quot;:&quot;PACOTE_DE_MENSAGENS&quot;,&quot;cnpjSemMascara&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição camposPersonalizadosCliente" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/camposPersonalizadosCliente</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;id&quot;:2,&quot;emailPadrao&quot;:&quot;comercial@virtualsistemas.com.br&quot;,&quot;nome&quot;:&quot;Virtual Sistemas&quot;,&quot;endereco&quot;:&quot;Av. Álvares Cabral, 1830 - Lourdes, Belo Horizonte - MG, 30170-001&quot;,&quot;telefone&quot;:&quot;3132456213&quot;,&quot;createdAt&quot;:1575318507530,&quot;updatedAt&quot;:1736434516685,&quot;emailLead&quot;:&quot;&quot;,&quot;emailCco&quot;:&quot;virtualomnia@virtualsistemas.com.br&quot;,&quot;orderLead&quot;:&quot;interacao&quot;,&quot;agendamentoAutomatico&quot;:30,&quot;repeticaoAviso&quot;:1,&quot;permitirFinalizarSemProduto&quot;:true,&quot;negocio&quot;:&quot;OUTROS&quot;,&quot;importaFacebook&quot;:false,&quot;textoAnexoObrigatorio&quot;:&quot;500&quot;,&quot;anexoObrigatorio&quot;:false,&quot;notificaEncerramento&quot;:false,&quot;habilitaPreco&quot;:true,&quot;habilitaClienteLojas&quot;:false,&quot;habilitaEncaminhamento&quot;:false,&quot;habilitaBotoesTelefonia&quot;:false,&quot;apiKey&quot;:null,&quot;sigla&quot;:&quot;VS&quot;,&quot;encaminhamentoEmRetorno&quot;:0,&quot;vendaConcluidaApenasComValor&quot;:false,&quot;tokenIdentificadorExterno&quot;:&quot;tl9wc4K6cRhouwb&quot;,&quot;quantidadeLicenca&quot;:46,&quot;motivoLeadInvalida&quot;:null,&quot;duplicadaId&quot;:null,&quot;produtoIndisponivelId&quot;:null,&quot;matriz&quot;:null,&quot;rede&quot;:[32,33,34,31],&quot;preposicao&quot;:&quot;da&quot;,&quot;baseUrlLead&quot;:null,&quot;email&quot;:{&quot;id&quot;:3,&quot;usuario&quot;:&quot;virtualomnia&quot;,&quot;senha&quot;:&quot;T45Q6jTcM9K7WLlS0iqYAGkEyWcNz/Hp&quot;,&quot;createdAt&quot;:1580083200000,&quot;updatedAt&quot;:1650846783491,&quot;hostName&quot;:&quot;mail2.virtualsistemas.com.br&quot;,&quot;email&quot;:&quot;virtualomnia@virtualsistemas.com.br&quot;,&quot;porta&quot;:995,&quot;protocolo&quot;:&quot;POP_SSL&quot;,&quot;hostNameEnvio&quot;:&quot;mail2.virtualsistemas.com.br&quot;,&quot;portaEnvio&quot;:587,&quot;loginValido&quot;:true,&quot;limparCaixa&quot;:true,&quot;mensagem&quot;:null},&quot;tipoTemporalAgendamento&quot;:&quot;MINUTO&quot;,&quot;tipoTemporalAviso&quot;:&quot;HORA&quot;,&quot;camposObrigatorios&quot;:[],&quot;formatoTelefone&quot;:&quot;9999-9999&quot;,&quot;habilitaFormatacaoTelefone&quot;:false,&quot;enderecoWeb&quot;:&quot;https://virtual.vsomnia.com.br:8443&quot;,&quot;enderecoDominio&quot;:&quot;https://virtual.vsomnia.com.br/&quot;,&quot;integracaoApi&quot;:null,&quot;chaveApi&quot;:null,&quot;cnpj&quot;:null,&quot;tempoInativo&quot;:null,&quot;usuarioAdmin&quot;:null,&quot;leadsRecebidas&quot;:0,&quot;paraFunil&quot;:false,&quot;status&quot;:true,&quot;usuarioInvalidou&quot;:null,&quot;abrirLeadAquario&quot;:false,&quot;idiomaLoja&quot;:&quot;PORTUGUES&quot;,&quot;chaveObrigatoriosEncerrarLead&quot;:&quot;&quot;,&quot;ordenacaoCampoPersonalizadoLead&quot;:&quot;ALFABETICA&quot;,&quot;ordenacaoCampoPersonalizadoCliente&quot;:&quot;ALFABETICA&quot;,&quot;planosGupshup&quot;:&quot;PACOTE_DE_MENSAGENS&quot;,&quot;cnpjSemMascara&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição negocios" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeProdutos" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeProdutos</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeEmail" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeEmail</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeComentario" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeComentario</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeTags" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeTags</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeWhatsapp" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeWhatsapp</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 5 (/web/equipe/buscarHabilitarValores)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/buscarHabilitarValores/5</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeFacebook" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeFacebook</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeInstagram" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeInstagram</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeChat" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeChat</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição informacoesDeTarefa" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/informacoesDeTarefa</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;usuario&quot;:null,&quot;tipoFiltro&quot;:&quot;etiqueta,&quot;,&quot;ordenacaoPorValor&quot;:null,&quot;ordenacaoPorDataCriacao&quot;:null,&quot;ordenacaoPorAtrasadas&quot;:null,&quot;ordenacaoPorUltimaMensagem&quot;:null,&quot;busca&quot;:&quot;&quot;,&quot;equipe&quot;:5,&quot;campoOrdenacaoLead&quot;:null,&quot;campoTabela&quot;:null,&quot;ordem&quot;:&quot;ASC&quot;,&quot;idLoja&quot;:2,&quot;cadeadoFechado&quot;:true,&quot;etiquetas&quot;:&quot;04.614.288/0001-45,05.429.222/0001-48,07 UNIDADES,10.000 FUNCIONÁRIOS,10000 FUNCIONÁRIOS,1000 FUNCIONÁRIOS,100 funcionários,100 FUNCIONÁRIOS,10 A 20 FUNCIONÁRIOS,10 FUNC,10 FUNCIONÁRIOS,11.291.484/0001-91,123456789,150 funcionários,150FUNCIONÁRIOS,150 FUNCIONÁRIOS,1 A 10 FUNCIONARIOS,1 a 10 funcionários,1 A 10 FUNCIONÁRIOS,200 funcionários,200 FUNCIONÁRIOS,2024,20  funcionários,20 FUNCIONÁRIOS,(21) 9 9643-9291,21 A 50 FUNCIONÁRIOS,23.155.299/0001-59,300 funcionários,300 FUNCIONÁRIOS,400 funcionários,400 FUNCIONÁRIOS,40 FUNCIONÁRIOS,41.622.064/0001-01,4visualizações,5000 funcionários,5000 FUNCIONÁRIOS,500 funcionários,500 FUNCIONÁRIOS,50 funcionários,50 FUNCIONÁRIOS,5 UNIDADES,.6.000 FUNCIONÁRIOS,600 FUNCIONÁRIOS,60 FUNCIONÁRIOS,700 FUNCIONÁRIOS,aaaa,abc,ABRIL24,Adm Condomínios,agosto,agosto2023,AGOSTO2023,AGOSTO23,agosto de 2023,Aguardando IA,ALPHAPLAST,Apresentação enviada,arthur brito,BAIXADA,BANNER DE COOKIE,be100001456789,BE123456789000,cartao,C E A CONSTRUTORA,Chamada falha,Chamada falhou,Chamou até cair,Checklist,Check list,Check List,clientefelippe,clientemanu,CLIENTEMANU,COMTICOMIGO,CONDOMÍNIO,Conversa com decisor,Correção,dadosservidor,De,DÉBITO,DÉBITOJANEIRO2023,Decisor,Decisor negativou,DEMANDA2024,demanda2025,demandafutura,demanda futura,Demanda Futura,DEMANDAFUTURA,demandafutura2023,demanda futura 2023,demandafutura2024,demandafutura2025,Demonstrou Interesse,Deseja-telefones-sem,Desqualificado,Duplicado,E,e-mail,E-mail,E-mail enviado,Ensino,Enviado apresentação,Enviar ap,Enviar apresentação,Enviar Apresentação,Enviar -email,Enviar e-mail,Escola,EX F5,EXPO BRASIL,finaldoano,Financeira,gestão mailing,GOVERNO,GROUPDAY,GRUPO PASCHOAL,importange,importante,Importante,IMPORTANTE,Indicação Anderson,indicação Duarte,Indicação Duarte,Indicação Gleisson,Indicação Max,IndicaçãoRodrigo,Indicação Zendesk,Indústria,Inform,Informação coletada,Informações coletada,INÍCIO MAIO 2023,inss,INTERESSA,jan/24,JAN/24,JANEIRO2023,JANEIRO 2023,Janeiro 2024 ,JANEIRO23,JANEIRO24,JANEIRO 24,Janeiro/25,JANEIRO25,JANEIRO DE 2024,julho,JULHO,JULHO2023,JUNHO2023,kkkk,Lead desqualificado,Lead direcionado,Lead duplicado,Lead inexistente,Lead qualificado,Ligação efetuada,Ligação efetuado,Ligação falhou,LIGAR,LOCAÇÃO ,LP,Maio/25,MANU - RETRABALHAR,MARÇO2023,MARÇO2023 ,MARÇO24,Março/25,MARTINS ENGENHARIA,marzo ,MT164181188181,MT221225325625,MT25521542455,MT256454545,MT615155452521,Não respondeu,Não tem ferramenta,Não tem interesse,nao tem o produto,Não tem porte,Não tem WhatsApp,Não usam ferramentas,Negócio fechado,No momento não,novembro2023,NOVEMBRO2023,NOVEMBRO23,Número não atende,Número não chama,ok,Omnia,ORÇAMENTO,orden 10 pm ,OTORRINOS FRONTEIRAS,Outro número,oUTUBRO2023,OUTUBRO2023,Outubro23,palio2015,PARCEIRO,Parceiro Revenda,PARCERIA,Passou outro contato,Pediu para ligar,Possui-Khomp,Potencia,Potencial,Poucos atendentes,Prioridade 2,projeto zendesk,PROJETO ZENDESK,PROJETO ZNDESK,PROPOSTA,Proposta enviada,Proposta eNVIADA,Proposta Enviada,Prosposta Enviada,P&amp;R PRODUTOS MÉDICOS,Qualificado,QUASE 100 UNIDADES,R$20.000 MÊS,R$250 POR LICENÇA,rafaelvelloso,recorrente,Recorrente,RECORRENTE,REFIN,Retomar por whatsapp,Retornar ligação,REUNIAO,Reunião agendada,Reunião cancelada,Reunião realizada,SALCO LOGISTICS,Saudação,Saúde,SAVE ANGIOLOGIA,se,segunda,Sem interesse,Sem número,Sem resposta,Sem retorno,Sem WhatsApp,Serviço indisponível,SETEMBRO2023,SETRANS,setsetset,sim,tag,tagvs,Tarefa,Techmais,TELEFONE,Tem interesse,Tem Interesse,Tem potencial,TERMO DE ACEITE,Usam ferramenta,VÁRIAS FILIAIS,Virtual sistemas,Vsphone,WhatsApp,WhatsApp enviado,XXXXXX&quot;,&quot;etapasId&quot;:[9,10,257,282,402,406],&quot;etapasIdMax&quot;:[null,null,null,null,null,null],&quot;listaLeads&quot;:[]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/horarios)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/horarios/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição rede" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/rede</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição etapasPorLoja" enabled="false">
+          <stringProp name="HTTPSampler.domain">homologacao-virtual.vsomnia.com.br</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/etapasPorLoja</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[34,32,33,31,2]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkYTNiYzJmYi05MDc0LTQxYmQtOTNkNC01Y2U3Zjg4MjAzZGIiLCJpYXQiOjE3MzY5NDg5OTMsImV4cCI6MTczNjk5OTM5M30.Lm3aKQy1erjTUiIpWZwmVg0o0EMlmGfd7kBpNsEOLcI</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição ping" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/ping</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Tela de conversa lead">
+        <intProp name="ThreadGroup.num_threads">200</intProp>
+        <intProp name="ThreadGroup.ramp_time">0</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador de Iteração">
+          <stringProp name="LoopController.loops">100</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 5 (/web/equipe/buscarHabilitarValores)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/buscarHabilitarValores/5</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/horarios)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/horarios/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/motivo_cancelamento)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/motivo_cancelamento/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição integracao" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/integracao</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/loja)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/loja/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 53500" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/lead/pesquisarLeadPorIdCom15Mensagens/53500</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição etapasPorLoja" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/etapasPorLoja</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[34,32,33,31,2]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição codigo_paises-pt.json" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/assets/codigo_paises-pt.json</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição getEtapasEquipe" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/negocios/getEtapasEquipe</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">9</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/horarios)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/horarios/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 2 (/web/config/motivo_cancelamento)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/motivo_cancelamento/2</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 237" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/buscarAtivoWhatsappPorUsuario/237</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição canais" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/canais</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 5 (/web/equipe/buscarHabilitarValores)" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/equipe/buscarHabilitarValores/5</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição midias" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/config/midias</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição buscarMotivosTarefaLoja" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/tarefa/buscarMotivosTarefaLoja</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;headers&quot;:{&quot;session&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkYTNiYzJmYi05MDc0LTQxYmQtOTNkNC01Y2U3Zjg4MjAzZGIiLCJpYXQiOjE3MzY5NTgzMzgsImV4cCI6MTczNzAwODczOH0.eC524PIh4J2VXsdM7VyL71yLVyRmT_vVAFuM5w0Z4yM&quot;,&quot;Content-Type&quot;:&quot;application/json&quot;}}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição 53500" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/tarefa/buscarTarefasDTO/53500</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição nomesUsuarios" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/lead/nomesUsuarios</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&quot;237&quot;,&quot;217&quot;,&quot;217&quot;,&quot;217&quot;,&quot;217&quot;]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Requisição nomesUsuarios" enabled="true">
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">8444</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/web/lead/nomesUsuarios</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&quot;237&quot;,&quot;217&quot;,&quot;217&quot;,&quot;217&quot;,&quot;217&quot;]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Session</stringProp>
+                <stringProp name="Header.value">${TOKEN}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="TOKEN" elementType="Argument">
+            <stringProp name="Argument.name">TOKEN</stringProp>
+            <stringProp name="Argument.value">TOKEN</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="URL" elementType="Argument">
+            <stringProp name="Argument.name">URL</stringProp>
+            <stringProp name="Argument.value">URL</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Relatório Agregado" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Gráfico de Resultados" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados em Tabela" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Relatório de Sumário" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
